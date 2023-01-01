@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Monzer Osman">
+        <meta name="generator" content="">
+        <title>BookStore</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+        <link rel="stylesheet" th:href="@{/css/bookdetails.css}"/>
+        <link rel="stylesheet" href="../static/css/bookdetails.css"/>
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body style="background:#EEE">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/MIS-BOOKSTORE/home">MIS BookStore</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/MIS-BOOKSTORE/home">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MIS-BOOKSTORE/trends">Trends</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MIS-BOOKSTORE/authors">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MIS-BOOKSTORE/profile">Profile</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search" th:action="@{/MIS-BOOKSTORE/search_result}" method="Get">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="bookName">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <div style="position:relative; margin-left:13px;">
+                        <a href="/MIS-BOOKSTORE/sign_out" style="color:white; display:block; text-decoration:none;">SignOut</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container padding-left-0" style="margin-top:70px">
+        <div class="row padding-left-0">
+            <div class="col-md-7 padding-left-0 padding-bottom-0 padding-top-0">
+                <div class="project-info-box mt-0 padding-left-0 padding-bottom-0 padding-top-0">
+                    <div class="project-info-box mt-0 padding-left-0 padding-bottom-0 padding-top-0">
+                        <h3 style="text-align:center;"><p><b>Book Description</b></p></h3>
+                        <p th:text="${book.description}"></p>
+                        <p><b></b></p>
+                    </div>
+                </div>
+
+                <div class="project-info-box padding-left-0">
+                    <p><b>Title:</b> [[${book.title}]]</p>
+                    <p><b>Date:</b> 2022-8-12</p>
+                    <p><b>Rating:</b> [[${book.title}]]</p>
+                    <p><b>Language:</b> [[${book.language}]]</p>
+                    <p><b>Pages:</b> [[${book.pages}]]</p>
+                    <p class="mb-0"><b>Price:</b> [[${book.price}]]</p>
+                </div>
+                <div class="project-info-box padding-left-0">
+                    <p><b>Categories:</b> Horror, Drama, Fancy</p>
+                    <p><b>Skills:</b> Illustrator</p>
+                </div>
+            </div>
+
+            <div class="col-md-5" style="background:#eee">
+                <div class="project-info-box mt-0 padding-bottom-0 padding-top-0" style="background:#eee">
+                    <img height="500px" th:src="${book.imgSrc}" alt="book-image" class="rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-muted py-5">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a href="#">Back to top</a>
+            </p>
+            <p class="mb-1">MIS Books-Library is &copy; Online Books-Library,
+                developed by MIS-Team and all &copy;
+                copyright reserved to MIS Company 2022</p>
+            <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
+                    href="../getting-started/introduction/">getting started guide</a>.</p>
+        </div>
+    </footer>
+    </body>
+</html>

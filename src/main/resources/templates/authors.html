@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Monzer Osman">
+  <meta name="generator" content="">
+  <title>Authors</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+
+  <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+  <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding:0px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/MIS-BOOKSTORE/home" style="background:transparent; margin:0px;">MIS Book-Library</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/MIS-BOOKSTORE/home">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MIS-BOOKSTORE/trends">Trends</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Authors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/MIS-BOOKSTORE/profile">Profile</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search" th:action="@{/MIS-BOOKSTORE/search_result}" method="Get">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="bookName">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <div style="position:relative; margin-left:13px;">
+          <a href="/MIS-BOOKSTORE/sign_out" style="color:white; display:block; text-decoration:none;">SignOut</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin:0px !important; width:100%; padding-top:90px;">
+      <h2>Authors</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">favorite-Book</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="author:${authors}">
+            <td th:text="${author.authorId}">1,001</td>
+            <td th:text="${author.name}">random</td>
+            <td th:text="${author.booksId}">data</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="center" th:if="${totalPages > 1}">
+        <nav aria-label="...">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/MIS-BOOKSTORE/authors/page/' + ${currentPage - 1}}"
+                 tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item" th:if="${currentPage <= 5}" th:each="i: ${#numbers.sequence(1, currentPage)}">
+              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/MIS-BOOKSTORE/authors/page/' + ${i}}">[[${i}]]</a>
+              <a class="page-link active" th:unless="${currentPage != i}">[[${i}]]</a>
+            </li>
+            <li class="page-item" th:unless="${currentPage <= 5}"
+                th:each="i: ${#numbers.sequence(currentPage - 5, currentPage)}">
+              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/MIS-BOOKSTORE/authors/page/' + ${i}}">[[${i}]]</a>
+              <a class="page-link active" th:unless="${currentPage != i}">[[${i}]]</a>
+            </li>
+            <li class="page-item" th:if="${currentPage + 5 < totalPages}"
+                th:each="i: ${#numbers.sequence(currentPage + 1, currentPage + 5)}">
+              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/MIS-BOOKSTORE/authors/page/'+ ${i}}">[[${i}]]</a>
+              <a class="page-link active" th:unless="${currentPage != i}">[[${i}]]</a>
+            </li>
+            <li class="page-item" th:if="${currentPage + 5 > totalPages}"
+                th:each="i: ${#numbers.sequence(currentPage + 1, totalPages)}">
+              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/MIS-BOOKSTORE/authors/page/' + ${i}}">[[${i}]]</a>
+              <a class="page-link active" th:unless="${currentPage != i}">[[${i}]]</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/MIS-BOOKSTORE/authors/page/' + ${currentPage + 1}}">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+</body>
+</html>

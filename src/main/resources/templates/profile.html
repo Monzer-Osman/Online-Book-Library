@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Monzer Osman">
+    <meta name="generator" content="">
+    <title>Profile</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href = "@{/css/profile.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/MIS-BOOKSTORE/home">MIS Book-Library</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/MIS-BOOKSTORE/home">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/MIS-BOOKSTORE/trends">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/MIS-BOOKSTORE/authors">Authors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/MIS-BOOKSTORE/profile">Profile</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search" th:action="@{/MIS-BOOKSTORE/search_result}" method="Get">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="bookName">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div style="position:relative; margin-left:13px;">
+                    <a href="/MIS-BOOKSTORE/sign_out" style="color:white; display:block; text-decoration:none;">SignOut</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container rounded bg-white mt-5 mb-5" style="position:relative; top:50px; border-radius:25%;">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                <span class="font-weight-bold"></span>
+                <span class="text-black-50"></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right" >
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <form th:action="@{update_profile}" method="get">
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="labels">first name</label>
+                            <input type="text" class="form-control" th:value="${firstName}" placeholder="first name" value="" name="firstName">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">surname</label>
+                            <input type="text" class="form-control" th:value="${lastName}" placeholder="surname" name="surname">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Mobile Number</label>
+                            <input type="text" class="form-control" placeholder="enter phone number" th:value="${phoneNumber}" name="phoneNumber">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Email</label>
+                            <input type="text" class="form-control" placeholder="enter email" th:value="${email}" name="email">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">password</label>
+                            <input type="password" class="form-control" id="floatingPassword" th:value="${password}" placeholder="password" name="password">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels">Country</label>
+                            <input type="text" class="form-control" placeholder="country" th:value="${country}" th:name="country">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">State/Region</label>
+                            <input type="text" class="form-control" placeholder="state" th:value="${state}" th:name="state">
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                    </div>
+                </form>
+            </div>
+           </div>
+            <div class="col-md-3">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <span class="font-weight-bold"></span>
+                    <span class="text-black-50"></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</body>
+</html>

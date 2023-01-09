@@ -16,11 +16,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 @SessionAttributes("{email}")
 @RequestMapping("/MIS-BOOKSTORE")
-public class AuthorsController {
-    AuthorService authorService;
+public class AuthorController {
+    private AuthorService authorService;
 
     @Autowired
-    public AuthorsController(AuthorService authorService){
+    public AuthorController(AuthorService authorService){
         this.authorService = authorService;
     }
 

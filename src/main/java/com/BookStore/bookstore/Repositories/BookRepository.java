@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface BookRepository
         extends JpaRepository<Book, String> {
-    @Query(value = "SELECT * FROM books WHERE position(?1 in LOWER(title))>0", nativeQuery = true)
+    @Query(value = "SELECT * FROM books " +
+            "WHERE position(?1 in LOWER(title)) > 0", nativeQuery = true)
     Page<Book> findBooksByName(@Param("book") String bookName, Pageable pageable);
 }
